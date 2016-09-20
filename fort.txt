@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _05_Fort
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            string roofside = "/" + StringCreater("^", n / 2) + "\\";
+            Console.Write(roofside);
+            int dashes = (n * 2) - (n / 2) * 2 - 4;
+
+            Console.Write(new string('_', dashes));
+            Console.Write(roofside);
+            Console.WriteLine();
+
+            for (int i = 2; i < n - 1; i++)
+            {
+                int emptySpaces = n * 2 - 2;
+                string midsection = "|" + StringCreater(" ", emptySpaces) + "|";
+                Console.Write(midsection);
+                Console.WriteLine();
+            }
+
+            for (int i = n - 2; i < n - 1; i++)
+            {
+
+                Console.WriteLine("|" + StringCreater(" ", n / 2 + 1)
+                    + StringCreater("_", dashes)
+                    + StringCreater(" ", n / 2 + 1) + "|");
+
+
+            }
+
+            string roofbottom = "\\" + StringCreater("_", n / 2) + "/";
+            Console.Write(roofbottom);
+            Console.Write(new string(' ', dashes));
+            Console.Write(roofbottom);
+
+        }
+
+
+        public static string StringCreater(string text, int repeatCount)
+        {
+            string repeatedText = string.Empty;
+            for (int currentCount = 0; currentCount < repeatCount; currentCount++)
+            {
+                repeatedText += text;
+            }
+            return repeatedText;
+        }
+    }
+}

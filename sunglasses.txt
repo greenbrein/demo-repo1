@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _08_Sunglasses
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            int glassWidth = n * 2;
+            int glasHeight = n;
+            string glassFrame = StringCreater("*", glassWidth);
+            string emptySpaces = StringCreater(" ", n);
+            string topBottomFrame = glassFrame + emptySpaces + glassFrame;
+
+            Console.WriteLine(topBottomFrame);
+            string glassWithFrame = "*" + StringCreater("/", glassWidth - 2) + "*";
+            string glasssBody = glassWithFrame + emptySpaces + glassWithFrame;
+            string glassesBodyWithBridge = glassWithFrame + StringCreater("|", n) + glassWithFrame;
+
+            int rowWithBridge = glasHeight / 2;
+            if (glasHeight % 2 == 0)
+            {
+                rowWithBridge--;
+            }
+
+            for (int currentRow = 1; currentRow <= glasHeight - 2; currentRow++)
+            {
+                if (currentRow != rowWithBridge)
+                {
+                    Console.WriteLine(glasssBody);
+                }
+                else
+                {
+                    Console.WriteLine(glassesBodyWithBridge);
+                }
+                
+            }
+
+            Console.WriteLine(topBottomFrame);
+        }
+
+        public static string StringCreater(string text, int repeatCount)
+        {
+            string repeatedText = string.Empty;
+            for (int currentCount = 0; currentCount < repeatCount; currentCount++)
+            {
+                repeatedText += text;
+            }
+            return repeatedText;
+        }
+    }
+}
